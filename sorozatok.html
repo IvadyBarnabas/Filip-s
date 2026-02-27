@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sorozatok - FILIP-VERSE</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/x-icon" href="kepek/icon.png">
+</head>
+<body>
+  <header>
+    <div class="logo">FILIP-<span>VERSE</span></div>
+    <nav>
+      <a href="index.html">Főoldal</a>
+      <a href="jatekok.html">Játékok</a>
+      <a href="filmek.html">Filmek</a>
+      <a href="sorozatok.html">Sorozatok</a>
+      <a href="hirek.html">Hírek</a>
+    </nav>
+  </header>
+
+  <main class="articles">
+    <article class="card" data-date="2026-01-30">
+      <a href="#">
+        <img src="kepek/spidernoir.png" alt="Sorozat borító">
+        <h2>A Spider-Noir főgonoszai</h2>
+        <time datetime="2026-01-30">2026. jan. 30.</time>
+        <p>A Spider-Noir hivatalos előzetesében feltűnik pár ismerős arc Pókember ellenségei közül.</p>
+      </a>
+    </article>
+
+    <article class="card" data-date="2025-09-12">
+      <a href="#">
+        <img src="kepek/dispatch.png" alt="Sorozat kép">
+        <h2>Új sorozat érkezik a streamingszolgáltatóhoz</h2>
+        <time datetime="2025-09-12">2025. szept. 12.</time>
+        <p>Részletek a premierről és a szereplőkről.</p>
+      </a>
+    </article>
+
+    <article class="card" data-date="2024-05-03">
+      <a href="#">
+        <img src="kepek/scream7.png" alt="Sorozathoz kapcsolódó kép">
+        <h2>Minisorozat ajánló</h2>
+        <time datetime="2024-05-03">2024. máj. 3.</time>
+        <p>Kihagyhatatlan minisorozatok a közelmúltból.</p>
+      </a>
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2026 Filip-Verse - Minden jog fenntartva</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.querySelector('.articles');
+      if (!container) return;
+      const cards = Array.from(container.querySelectorAll('.card'));
+      cards.sort((a,b) => new Date(b.dataset.date) - new Date(a.dataset.date));
+      cards.forEach(c => container.appendChild(c));
+      container.querySelectorAll('time').forEach(t => {
+        const d = new Date(t.getAttribute('datetime'));
+        t.textContent = d.toLocaleDateString('hu-HU', { year:'numeric', month:'short', day:'numeric' });
+      });
+    });
+  </script>
+</body>
+</html>
